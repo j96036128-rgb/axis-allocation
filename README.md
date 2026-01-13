@@ -29,28 +29,30 @@ AxisAllocation/
 └── README.md
 ```
 
+## Live Site
+
+**GitHub Pages URL:** https://j96036128-rgb.github.io/axis-allocation/
+
+**Repository:** https://github.com/j96036128-rgb/axis-allocation
+
 ## Deployment to GitHub Pages
 
-### Option 1: Root of Repository
+### Current Configuration
 
-1. Create a new GitHub repository (e.g., `axis-allocation` or `axisallocation.github.io`)
-2. Push all files to the `main` branch
-3. Go to repository Settings → Pages
-4. Under "Source", select `main` branch and `/ (root)` folder
-5. Click Save
-6. Site will be live at `https://[username].github.io/[repo-name]/`
+- **Source:** `main` branch
+- **Folder:** `/` (root)
+- **HTTPS:** Enforced
 
-### Option 2: Custom Domain
+### Custom Domain (Optional)
 
-1. Complete Option 1 steps
-2. Create a file named `CNAME` in root with your domain:
+1. Create a file named `CNAME` in root with your domain:
    ```
    axisallocation.co.uk
    ```
-3. Configure DNS with your domain provider:
+2. Configure DNS with your domain provider:
    - For apex domain: Add A records pointing to GitHub Pages IPs
    - For subdomain: Add CNAME record pointing to `[username].github.io`
-4. Enable "Enforce HTTPS" in repository Settings → Pages
+3. Enable "Enforce HTTPS" in repository Settings → Pages
 
 ### GitHub Pages IPs (for A records)
 
