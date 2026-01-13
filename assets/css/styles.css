@@ -1,21 +1,40 @@
-/* Mandate Capital — Institutional Styles */
+/* Mandate Capital — Institutional Styles (Softened Light Theme) */
 
 :root {
-    --color-bg: #fafafa;
+    /* Background tones */
+    --color-bg: #f4f5f6;
     --color-bg-alt: #ffffff;
-    --color-text: #1a1a1a;
-    --color-text-muted: #5c5c5c;
-    --color-text-subtle: #8a8a8a;
-    --color-border: #e0e0e0;
-    --color-border-light: #f0f0f0;
-    --color-accent: #2c3e50;
-    --color-accent-hover: #1a252f;
-    --color-success: #2e7d32;
-    --color-warning: #c9a227;
+    --color-bg-footer: #eef0f2;
+
+    /* Text hierarchy */
+    --color-text: #1f2933;
+    --color-text-muted: #4b5563;
+    --color-text-subtle: #6b7280;
+
+    /* Borders */
+    --color-border: #e5e7eb;
+    --color-border-light: #f0f1f3;
+
+    /* Accents (muted slate) */
+    --color-accent: #334155;
+    --color-accent-hover: #475569;
+
+    /* Form focus */
+    --color-focus: #64748b;
+
+    /* Status colours (subdued) */
+    --color-warning: #b8860b;
+
+    /* Typography */
     --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+    /* Layout */
     --max-width: 960px;
     --max-width-narrow: 720px;
+
+    /* Elevation */
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 *, *::before, *::after {
@@ -192,6 +211,7 @@ main {
     border-radius: 4px;
     padding: 1.5rem;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-subtle);
 }
 
 .card-grid {
@@ -310,7 +330,7 @@ main {
     font-family: var(--font-primary);
     color: var(--color-text);
     background: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
+    border: 1px solid #d1d5db;
     border-radius: 4px;
     transition: border-color 0.15s ease;
 }
@@ -319,7 +339,7 @@ main {
 .form-select:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
+    border-color: var(--color-focus);
 }
 
 .form-textarea {
@@ -508,6 +528,7 @@ td {
     border: 1px solid var(--color-border);
     border-radius: 4px;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-subtle);
 }
 
 .process-step::before {
@@ -540,7 +561,7 @@ td {
 
 /* Footer */
 .footer {
-    background: var(--color-bg-alt);
+    background: var(--color-bg-footer);
     border-top: 1px solid var(--color-border);
     padding: 2rem 0;
     margin-top: auto;
