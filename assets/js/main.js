@@ -6,6 +6,38 @@
 (function() {
     'use strict';
 
+    // Theme toggle
+    function initThemeToggle() {
+        const toggle = document.querySelector('.theme-toggle');
+        if (!toggle) return;
+
+        // Get saved preference or system preference
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Apply theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Set initial theme
+        setTheme(getPreferredTheme());
+
+        // Toggle on click
+        toggle.addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
+
     // Mobile navigation toggle
     function initMobileNav() {
         const toggle = document.querySelector('.nav-toggle');
@@ -114,6 +146,7 @@
 
     // Initialise on DOM ready
     document.addEventListener('DOMContentLoaded', function() {
+        initThemeToggle();
         initMobileNav();
         initFormValidation();
     });

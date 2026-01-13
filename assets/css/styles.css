@@ -1,4 +1,4 @@
-/* Axis Allocation — Institutional Styles (Softened Light Theme) */
+/* Axis Allocation — Institutional Styles */
 
 :root {
     /* Background tones */
@@ -35,6 +35,33 @@
 
     /* Elevation */
     --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    /* Form inputs */
+    --color-input-border: #d1d5db;
+}
+
+/* Dark theme (institutional charcoal/slate) */
+[data-theme="dark"] {
+    --color-bg: #1a1d21;
+    --color-bg-alt: #22262b;
+    --color-bg-footer: #16191c;
+
+    --color-text: #e5e7eb;
+    --color-text-muted: #9ca3af;
+    --color-text-subtle: #6b7280;
+
+    --color-border: #374151;
+    --color-border-light: #2d333b;
+
+    --color-accent: #94a3b8;
+    --color-accent-hover: #cbd5e1;
+
+    --color-focus: #64748b;
+    --color-warning: #d4a54a;
+
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    --color-input-border: #4b5563;
 }
 
 *, *::before, *::after {
@@ -330,7 +357,7 @@ main {
     font-family: var(--font-primary);
     color: var(--color-text);
     background: var(--color-bg-alt);
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--color-input-border);
     border-radius: 4px;
     transition: border-color 0.15s ease;
 }
@@ -744,5 +771,57 @@ td {
 
     .radio-group {
         flex-direction: column;
+    }
+}
+
+/* Theme toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    color: var(--color-text);
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+/* Show moon in light mode, sun in dark mode */
+:root .theme-toggle .icon-moon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
+}
+
+/* Header actions container */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .header-actions {
+        gap: 0.5rem;
     }
 }
