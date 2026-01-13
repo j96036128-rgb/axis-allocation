@@ -34,8 +34,8 @@
             e.preventDefault();
 
             // Check required acknowledgements
-            const ack1 = document.getElementById('ack-submission');
-            const ack2 = document.getElementById('ack-deposit');
+            const ack1 = document.getElementById('ack-payment');
+            const ack2 = document.getElementById('ack-refund');
             const ack3 = document.getElementById('ack-terms');
 
             if (!ack1.checked || !ack2.checked || !ack3.checked) {
@@ -90,16 +90,17 @@
         const confirmation = document.createElement('div');
         confirmation.className = 'card';
         confirmation.innerHTML = `
-            <h2>Mandate Submitted for Review</h2>
+            <h2>Mandate Submitted</h2>
             <p>
-                Your mandate has been received. Submission does not constitute acceptance.
+                Your mandate and engagement deposit have been received.
             </p>
             <p>
-                Mandates are reviewed on a discretionary basis. If your mandate is accepted,
-                you will receive written confirmation with engagement terms.
+                Submission does not constitute acceptance. Mandates are reviewed on a
+                discretionary basis. You will receive written confirmation of acceptance
+                or decline.
             </p>
             <p class="text-muted text-small mb-0">
-                No further action is required at this time.
+                See Terms of Service for refund policy.
             </p>
         `;
 
@@ -123,16 +124,15 @@
 /**
  * Stripe Integration Placeholder
  *
- * Payment integration is deferred until mandate acceptance.
- * Upon acceptance, engagement deposit will be collected via:
+ * Payment is collected at submission. Integration options:
  *
- * Option A: Stripe Payment Links (manual)
- * - Create payment link in Stripe Dashboard
- * - Send link to accepted mandate holders
+ * Option A: Stripe Payment Links
+ * - Create payment link in Stripe Dashboard for £500
+ * - Redirect form submission to payment link
+ * - Use Stripe webhooks for confirmation
  *
  * Option B: Stripe Checkout (requires backend)
  * - Create checkout session server-side
- * - Redirect accepted mandate holders to checkout
- *
- * Note: No payment is collected at submission.
+ * - Redirect to Stripe Checkout on form submit
+ * - Handle webhooks for payment confirmation
  */
