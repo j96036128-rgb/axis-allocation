@@ -629,6 +629,16 @@ td {
     color: var(--color-text);
 }
 
+.footer-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-linkedin svg {
+    flex-shrink: 0;
+}
+
 .footer-legal {
     width: 100%;
     padding-top: 1.5rem;

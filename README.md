@@ -31,7 +31,7 @@ AxisAllocation/
 
 ## Live Site
 
-**GitHub Pages URL:** https://j96036128-rgb.github.io/axis-allocation/
+**Live URL:** https://axisallocation.com
 
 **Repository:** https://github.com/j96036128-rgb/axis-allocation
 
@@ -43,19 +43,15 @@ AxisAllocation/
 - **Folder:** `/` (root)
 - **HTTPS:** Enforced
 
-### Custom Domain (Optional)
+### Custom Domain
 
-1. Create a file named `CNAME` in root with your domain:
-   ```
-   axisallocation.co.uk
-   ```
-2. Configure DNS with your domain provider:
-   - For apex domain: Add A records pointing to GitHub Pages IPs
-   - For subdomain: Add CNAME record pointing to `[username].github.io`
-3. Enable "Enforce HTTPS" in repository Settings → Pages
+The site is configured to use `axisallocation.com` via the CNAME file at the repository root.
 
-### GitHub Pages IPs (for A records)
+DNS configuration (via GoDaddy):
+- For apex domain: Add A records pointing to GitHub Pages IPs
+- Enable "Enforce HTTPS" in repository Settings → Pages after DNS propagation
 
+GitHub Pages IPs (for A records):
 ```
 185.199.108.153
 185.199.109.153
@@ -114,7 +110,7 @@ Edit CSS variables in `assets/css/styles.css`:
 
 ### Contact Email
 
-Update `enquiries@axisallocation.co.uk` in:
+Update `john@axisallocation.com` in:
 - Footer of all HTML pages
 - Terms of Service
 - Privacy Policy
