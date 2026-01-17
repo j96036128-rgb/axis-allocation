@@ -1,0 +1,20 @@
+# Axis Deal Engine - Phase 7
+# Core dependencies (Python 3.10+ required)
+
+# FastAPI web application
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+jinja2>=3.1.0
+python-multipart>=0.0.6
+
+# Core modules use Python standard library:
+# - dataclasses
+# - enum
+# - typing
+# - datetime
+# - re
+# - json
+
+# Future phases may add:
+# requests>=2.31.0      # HTTP client for scraping
+# beautifulsoup4>=4.12  # HTML parsing

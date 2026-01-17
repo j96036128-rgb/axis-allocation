@@ -1,0 +1,60 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.diagnosticMode": "openFilesOnly",
+
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.rulers": [88],
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "selection",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.stickyScroll.enabled": false,
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+
+  "black-formatter.args": ["--line-length", "88"],
+
+  "ruff.lint.args": ["--line-length", "88"],
+  "ruff.organizeImports": true,
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.pyc": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+    ".venv": true,
+    "reports/*.pdf": true,
+    "**/.DS_Store": true
+  },
+  "files.watcherExclude": {
+    "**/__pycache__/**": true,
+    ".venv/**": true,
+    "reports/**": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "search.exclude": {
+    ".venv": true,
+    "reports": true,
+    "**/__pycache__": true
+  },
+
+  "git.autofetch": false,
+  "git.confirmSync": true,
+  "git.enableSmartCommit": false,
+
+  "terminal.integrated.scrollback": 5000,
+
+  "telemetry.telemetryLevel": "off"
+}

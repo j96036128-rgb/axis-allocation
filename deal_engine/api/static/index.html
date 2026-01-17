@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Deal Engine - Mandate Management</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Axis Deal Engine</h1>
+            <nav>
+                <button class="nav-btn active" data-view="mandates">Mandates</button>
+                <button class="nav-btn" data-view="compare">Compare</button>
+                <button class="nav-btn" data-view="search">Search</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Mandates View -->
+        <section id="mandates-view" class="view active">
+            <div class="view-header">
+                <h2>Investor Mandates</h2>
+                <button id="create-mandate-btn" class="btn btn-primary">+ New Mandate</button>
+            </div>
+            <div id="mandates-list" class="mandates-grid"></div>
+        </section>
+
+        <!-- Compare View -->
+        <section id="compare-view" class="view">
+            <div class="view-header">
+                <h2>Compare Mandates</h2>
+            </div>
+            <div class="compare-container">
+                <div class="compare-selection">
+                    <p>Select mandates to compare:</p>
+                    <div id="compare-checkboxes" class="checkbox-grid"></div>
+                    <button id="run-compare-btn" class="btn btn-primary" disabled>Compare Selected</button>
+                </div>
+                <div id="compare-results" class="compare-results"></div>
+            </div>
+        </section>
+
+        <!-- Search View -->
+        <section id="search-view" class="view">
+            <div class="view-header">
+                <h2>Search Listings</h2>
+            </div>
+            <div class="search-container">
+                <div class="search-form">
+                    <label for="search-mandate">Select Mandate:</label>
+                    <select id="search-mandate"></select>
+
+                    <label for="listings-json">Listings (JSON):</label>
+                    <textarea id="listings-json" placeholder='[{"listing_id": "LST-001", "title": "Property", ...}]'></textarea>
+
+                    <!-- Planning Context Section -->
+                    <div class="planning-context-section">
+                        <div class="section-header" id="planning-toggle">
+                            <span class="toggle-icon">+</span>
+                            <span>Planning Context (Optional)</span>
+                        </div>
+                        <div id="planning-context-form" class="planning-form collapsed">
+                            <p class="form-note">Add planning context to assess development potential. Leave blank to skip planning analysis.</p>
+
+                            <!-- Property Baseline -->
+                            <div class="planning-subsection">
+                                <h5>Property Baseline</h5>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="planning-property-type">Property Type</label>
+                                        <select id="planning-property-type">
+                                            <option value="">-- Select --</option>
+                                            <option value="house_detached">Detached House</option>
+                                            <option value="house_semi">Semi-Detached House</option>
+                                            <option value="house_terraced">Terraced House</option>
+                                            <option value="flat">Flat</option>
+                                            <option value="maisonette">Maisonette</option>
+                                            <option value="bungalow">Bungalow</option>
+                                            <option value="commercial">Commercial</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="planning-tenure">Tenure</label>
+                                        <select id="planning-tenure">
+                                            <option value="">-- Select --</option>
+                                            <option value="freehold">Freehold</option>
+                                            <option value="leasehold">Leasehold</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="planning-current-sqft">Current SqFt</label>
+                                        <input type="number" id="planning-current-sqft" min="0" placeholder="e.g., 1200">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="planning-plot-size">Plot Size (SqFt)</label>
+                                        <input type="number" id="planning-plot-size" min="0" placeholder="e.g., 2500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Planning Constraints -->
+                            <div class="planning-subsection">
+                                <h5>Planning Constraints</h5>
+                                <div class="checkbox-grid planning-constraints">
+                                    <label>
+                                        <input type="checkbox" id="planning-listed">
+                                        Listed Building
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="planning-conservation">
+                                        Conservation Area
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="planning-article4">
+                                        Article 4 Direction
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="planning-greenbelt">
+                                        Green Belt
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="planning-tpo">
+                                        Tree Preservation Order
+                                    </label>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="planning-listed-grade">Listed Grade (if listed)</label>
+                                        <select id="planning-listed-grade">
+                                            <option value="">N/A</option>
+                                            <option value="II">Grade II</option>
+                                            <option value="II*">Grade II*</option>
+                                            <option value="I">Grade I</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="planning-flood-zone">Flood Zone</label>
+                                        <select id="planning-flood-zone">
+                                            <option value="1">Zone 1 (Low Risk)</option>
+                                            <option value="2">Zone 2 (Medium Risk)</option>
+                                            <option value="3">Zone 3 (High Risk)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Proposed Development -->
+                            <div class="planning-subsection">
+                                <h5>Proposed Development Type</h5>
+                                <div class="form-group">
+                                    <select id="planning-proposed-type">
+                                        <option value="">-- Select Development Type --</option>
+                                        <option value="extension_loft">Loft Conversion</option>
+                                        <option value="extension_rear">Rear Extension</option>
+                                        <option value="extension_side">Side Extension</option>
+                                        <option value="extension_basement">Basement Extension</option>
+                                        <option value="conversion_flats">Convert to Flats</option>
+                                        <option value="conversion_hmo">Convert to HMO</option>
+                                        <option value="change_of_use">Change of Use</option>
+                                        <option value="permitted_development">Permitted Development</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Nearby Precedents -->
+                            <div class="planning-subsection">
+                                <h5>Nearby Planning Precedents</h5>
+                                <p class="form-note">Add known nearby planning decisions to improve assessment accuracy.</p>
+                                <div id="precedents-list"></div>
+                                <button type="button" id="add-precedent-btn" class="btn btn-secondary btn-sm">+ Add Precedent</button>
+                            </div>
+
+                            <p class="planning-disclaimer">
+                                <strong>Disclaimer:</strong> Planning assessments are indicative only and do not constitute professional planning advice.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button id="run-search-btn" class="btn btn-primary">Run Search</button>
+                    <button id="load-sample-btn" class="btn btn-secondary">Load Sample Listings</button>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mandate Form Modal -->
+    <div id="mandate-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">New Mandate</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="mandate-form">
+                <div class="form-tabs">
+                    <button type="button" class="tab-btn active" data-tab="basic">Basic</button>
+                    <button type="button" class="tab-btn" data-tab="financial">Financial</button>
+                    <button type="button" class="tab-btn" data-tab="location">Location</button>
+                    <button type="button" class="tab-btn" data-tab="property">Property</button>
+                    <button type="button" class="tab-btn" data-tab="weights">Weights</button>
+                    <button type="button" class="tab-btn" data-tab="criteria">Criteria</button>
+                </div>
+
+                <!-- Basic Tab -->
+                <div class="tab-content active" data-tab="basic">
+                    <input type="hidden" id="mandate_id" name="mandate_id">
+
+                    <div class="form-group">
+                        <label for="investor_name">Investor Name *</label>
+                        <input type="text" id="investor_name" name="investor_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="investor_type">Investor Type *</label>
+                        <select id="investor_type" name="investor_type" required></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Asset Classes *</label>
+                        <div id="asset_classes_checkboxes" class="checkbox-grid"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="risk_profile">Risk Profile</label>
+                        <select id="risk_profile" name="risk_profile"></select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="priority">Priority (1-10)</label>
+                            <input type="number" id="priority" name="priority" min="1" max="10" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="is_active">Status</label>
+                            <select id="is_active" name="is_active">
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Financial Tab -->
+                <div class="tab-content" data-tab="financial">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="min_deal_size">Min Deal Size (GBP)</label>
+                            <input type="number" id="min_deal_size" name="min_deal_size" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="max_deal_size">Max Deal Size (GBP)</label>
+                            <input type="number" id="max_deal_size" name="max_deal_size" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="min_yield">Min Yield (%)</label>
+                            <input type="number" id="min_yield" name="min_yield" step="0.1" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="target_yield">Target Yield (%)</label>
+                            <input type="number" id="target_yield" name="target_yield" step="0.1" min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="max_ltv">Max LTV (%)</label>
+                            <input type="number" id="max_ltv" name="max_ltv" step="1" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="max_price_psf">Max Price/SqFt (GBP)</label>
+                            <input type="number" id="max_price_psf" name="max_price_psf" step="1" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total_allocation">Total Allocation (GBP)</label>
+                        <input type="number" id="total_allocation" name="total_allocation" min="0">
+                    </div>
+                </div>
+
+                <!-- Location Tab -->
+                <div class="tab-content" data-tab="location">
+                    <div class="form-group">
+                        <label for="regions">Target Regions (comma-separated)</label>
+                        <input type="text" id="regions" name="regions" placeholder="Greater London, South East">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postcodes">Target Postcodes (comma-separated)</label>
+                        <input type="text" id="postcodes" name="postcodes" placeholder="SW, SE, E, N">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exclude_regions">Excluded Regions (comma-separated)</label>
+                        <input type="text" id="exclude_regions" name="exclude_regions">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exclude_postcodes">Excluded Postcodes (comma-separated)</label>
+                        <input type="text" id="exclude_postcodes" name="exclude_postcodes">
+                    </div>
+                </div>
+
+                <!-- Property Tab -->
+                <div class="tab-content" data-tab="property">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="min_units">Min Units</label>
+                            <input type="number" id="min_units" name="min_units" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="max_units">Max Units</label>
+                            <input type="number" id="max_units" name="max_units" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="min_sqft">Min SqFt</label>
+                            <input type="number" id="min_sqft" name="min_sqft" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="max_sqft">Max SqFt</label>
+                            <input type="number" id="max_sqft" name="max_sqft" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="accept_turnkey" name="accept_turnkey" checked>
+                            Accept Turnkey
+                        </label>
+                        <label>
+                            <input type="checkbox" id="accept_refurbishment" name="accept_refurbishment" checked>
+                            Accept Refurbishment
+                        </label>
+                        <label>
+                            <input type="checkbox" id="accept_development" name="accept_development">
+                            Accept Development
+                        </label>
+                        <label>
+                            <input type="checkbox" id="freehold_only" name="freehold_only">
+                            Freehold Only
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="min_lease_years">Min Lease Years (if leasehold)</label>
+                        <input type="number" id="min_lease_years" name="min_lease_years" min="0">
+                    </div>
+                </div>
+
+                <!-- Weights Tab -->
+                <div class="tab-content" data-tab="weights">
+                    <p class="form-note">Adjust scoring weights (should sum to 1.0)</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight_location_region">Location Region</label>
+                            <input type="number" id="weight_location_region" name="weight_location_region"
+                                   step="0.01" min="0" max="1" value="0.15">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight_location_postcode">Location Postcode</label>
+                            <input type="number" id="weight_location_postcode" name="weight_location_postcode"
+                                   step="0.01" min="0" max="1" value="0.10">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight_price_range">Price Range</label>
+                            <input type="number" id="weight_price_range" name="weight_price_range"
+                                   step="0.01" min="0" max="1" value="0.20">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight_price_psf">Price/SqFt</label>
+                            <input type="number" id="weight_price_psf" name="weight_price_psf"
+                                   step="0.01" min="0" max="1" value="0.05">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight_yield_minimum">Yield Minimum</label>
+                            <input type="number" id="weight_yield_minimum" name="weight_yield_minimum"
+                                   step="0.01" min="0" max="1" value="0.15">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight_yield_target">Yield Target</label>
+                            <input type="number" id="weight_yield_target" name="weight_yield_target"
+                                   step="0.01" min="0" max="1" value="0.10">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight_property_size">Property Size</label>
+                            <input type="number" id="weight_property_size" name="weight_property_size"
+                                   step="0.01" min="0" max="1" value="0.05">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight_property_condition">Condition</label>
+                            <input type="number" id="weight_property_condition" name="weight_property_condition"
+                                   step="0.01" min="0" max="1" value="0.10">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight_property_tenure">Tenure</label>
+                            <input type="number" id="weight_property_tenure" name="weight_property_tenure"
+                                   step="0.01" min="0" max="1" value="0.05">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight_risk_profile">Risk Profile</label>
+                            <input type="number" id="weight_risk_profile" name="weight_risk_profile"
+                                   step="0.01" min="0" max="1" value="0.05">
+                        </div>
+                    </div>
+
+                    <div class="weight-total">
+                        Total: <span id="weight-sum">1.00</span>
+                    </div>
+                </div>
+
+                <!-- Criteria Tab -->
+                <div class="tab-content" data-tab="criteria">
+                    <p class="form-note">Deal evaluation thresholds</p>
+
+                    <div class="form-group">
+                        <label for="min_bmv_percent">Min Below Market Value (%)</label>
+                        <input type="number" id="min_bmv_percent" name="min_bmv_percent" step="0.1" min="0" max="100">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pursue_score_threshold">Pursue Score Threshold</label>
+                            <input type="number" id="pursue_score_threshold" name="pursue_score_threshold"
+                                   step="1" min="0" max="100" value="75">
+                        </div>
+                        <div class="form-group">
+                            <label for="consider_score_threshold">Consider Score Threshold</label>
+                            <input type="number" id="consider_score_threshold" name="consider_score_threshold"
+                                   step="1" min="0" max="100" value="60">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="min_overall_score">Min Overall Score</label>
+                        <input type="number" id="min_overall_score" name="min_overall_score"
+                               step="1" min="0" max="100" value="40">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="max_days_on_market">Max Days on Market</label>
+                        <input type="number" id="max_days_on_market" name="max_days_on_market" min="1">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="high_conviction_threshold">High Conviction Threshold</label>
+                            <input type="number" id="high_conviction_threshold" name="high_conviction_threshold"
+                                   step="0.01" min="0" max="1" value="0.80">
+                        </div>
+                        <div class="form-group">
+                            <label for="medium_conviction_threshold">Medium Conviction Threshold</label>
+                            <input type="number" id="medium_conviction_threshold" name="medium_conviction_threshold"
+                                   step="0.01" min="0" max="1" value="0.60">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Mandate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

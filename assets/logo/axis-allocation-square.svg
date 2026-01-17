@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&amp;display=swap');
+    .wordmark { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-weight: 500; letter-spacing: 0.06em; fill: #1f2933; text-anchor: middle; }
+    .line1 { font-size: 32px; }
+    .line2 { font-size: 20px; }
+  </style>
+  <text x="100" y="90" class="wordmark line1">AXIS</text>
+  <text x="100" y="120" class="wordmark line2">ALLOCATION</text>
+</svg>

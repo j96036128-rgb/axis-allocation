@@ -1,0 +1,238 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-01-14T12:43:09.372574",
+  "mandates": [
+    {
+      "mandate_id": "MND-20260114-890321",
+      "investor_name": "Sterling Capital Partners",
+      "investor_type": "institutional",
+      "asset_classes": [
+        "residential",
+        "build_to_rent"
+      ],
+      "risk_profile": "core",
+      "geographic": {
+        "regions": [
+          "Greater London",
+          "South East"
+        ],
+        "postcodes": [
+          "SW",
+          "SE",
+          "E",
+          "N",
+          "W"
+        ],
+        "exclude_regions": [],
+        "exclude_postcodes": []
+      },
+      "financial": {
+        "min_deal_size": 1000000,
+        "max_deal_size": 10000000,
+        "total_allocation": null,
+        "min_yield": 4.5,
+        "target_yield": 5.5,
+        "min_irr": null,
+        "target_irr": null,
+        "max_ltv": null,
+        "preferred_ltv": null,
+        "max_price_psf": null
+      },
+      "property": {
+        "min_units": 5,
+        "max_units": null,
+        "min_sqft": null,
+        "max_sqft": null,
+        "min_bedrooms": null,
+        "max_bedrooms": null,
+        "accept_refurbishment": false,
+        "accept_development": false,
+        "accept_turnkey": true,
+        "freehold_only": false,
+        "min_lease_years": null,
+        "preferred_property_types": []
+      },
+      "deal_criteria": {
+        "min_bmv_percent": null,
+        "min_overall_score": 40.0,
+        "pursue_score_threshold": 80.0,
+        "consider_score_threshold": 70.0,
+        "max_days_on_market": null,
+        "prefer_fresh_listings": true,
+        "fresh_listing_days": 14,
+        "high_conviction_threshold": 0.8,
+        "medium_conviction_threshold": 0.6,
+        "low_conviction_threshold": 0.4
+      },
+      "scoring_weights": {
+        "location_region": 0.15,
+        "location_postcode": 0.1,
+        "price_range": 0.2,
+        "price_psf": 0.05,
+        "yield_minimum": 0.15,
+        "yield_target": 0.1,
+        "property_size": 0.05,
+        "property_condition": 0.1,
+        "property_tenure": 0.05,
+        "risk_profile": 0.05
+      },
+      "is_active": true,
+      "priority": 1,
+      "notes": "Core strategy - stabilized assets only"
+    },
+    {
+      "mandate_id": "MND-20260114-C3F25C",
+      "investor_name": "Yield Hunters Fund",
+      "investor_type": "private_equity",
+      "asset_classes": [
+        "hmo",
+        "residential"
+      ],
+      "risk_profile": "value_add",
+      "geographic": {
+        "regions": [
+          "Greater London",
+          "West Midlands",
+          "North West"
+        ],
+        "postcodes": [],
+        "exclude_regions": [],
+        "exclude_postcodes": []
+      },
+      "financial": {
+        "min_deal_size": 300000,
+        "max_deal_size": 2000000,
+        "total_allocation": null,
+        "min_yield": 7.0,
+        "target_yield": 9.0,
+        "min_irr": null,
+        "target_irr": null,
+        "max_ltv": null,
+        "preferred_ltv": null,
+        "max_price_psf": null
+      },
+      "property": {
+        "min_units": 1,
+        "max_units": 15,
+        "min_sqft": null,
+        "max_sqft": null,
+        "min_bedrooms": null,
+        "max_bedrooms": null,
+        "accept_refurbishment": true,
+        "accept_development": false,
+        "accept_turnkey": true,
+        "freehold_only": false,
+        "min_lease_years": null,
+        "preferred_property_types": []
+      },
+      "deal_criteria": {
+        "min_bmv_percent": 10.0,
+        "min_overall_score": 40.0,
+        "pursue_score_threshold": 75.0,
+        "consider_score_threshold": 60.0,
+        "max_days_on_market": null,
+        "prefer_fresh_listings": true,
+        "fresh_listing_days": 14,
+        "high_conviction_threshold": 0.8,
+        "medium_conviction_threshold": 0.6,
+        "low_conviction_threshold": 0.4
+      },
+      "scoring_weights": {
+        "location_region": 0.1,
+        "location_postcode": 0.1,
+        "price_range": 0.15,
+        "price_psf": 0.05,
+        "yield_minimum": 0.25,
+        "yield_target": 0.2,
+        "property_size": 0.05,
+        "property_condition": 0.1,
+        "property_tenure": 0.05,
+        "risk_profile": 0.05
+      },
+      "is_active": true,
+      "priority": 2,
+      "notes": "Focus on high-yielding HMOs with value-add potential"
+    },
+    {
+      "mandate_id": "MND-20260114-BEDB86",
+      "investor_name": "Ashford Family Office",
+      "investor_type": "family_office",
+      "asset_classes": [
+        "mixed_use",
+        "residential",
+        "retail"
+      ],
+      "risk_profile": "core_plus",
+      "geographic": {
+        "regions": [
+          "Greater London"
+        ],
+        "postcodes": [
+          "W1",
+          "W2",
+          "SW1",
+          "SW3",
+          "SW7"
+        ],
+        "exclude_regions": [],
+        "exclude_postcodes": [
+          "E",
+          "SE"
+        ]
+      },
+      "financial": {
+        "min_deal_size": 2000000,
+        "max_deal_size": 15000000,
+        "total_allocation": null,
+        "min_yield": 4.0,
+        "target_yield": 5.0,
+        "min_irr": null,
+        "target_irr": null,
+        "max_ltv": null,
+        "preferred_ltv": null,
+        "max_price_psf": 1500.0
+      },
+      "property": {
+        "min_units": null,
+        "max_units": null,
+        "min_sqft": null,
+        "max_sqft": null,
+        "min_bedrooms": null,
+        "max_bedrooms": null,
+        "accept_refurbishment": true,
+        "accept_development": false,
+        "accept_turnkey": true,
+        "freehold_only": true,
+        "min_lease_years": null,
+        "preferred_property_types": []
+      },
+      "deal_criteria": {
+        "min_bmv_percent": null,
+        "min_overall_score": 40.0,
+        "pursue_score_threshold": 75.0,
+        "consider_score_threshold": 60.0,
+        "max_days_on_market": null,
+        "prefer_fresh_listings": true,
+        "fresh_listing_days": 14,
+        "high_conviction_threshold": 0.8,
+        "medium_conviction_threshold": 0.6,
+        "low_conviction_threshold": 0.4
+      },
+      "scoring_weights": {
+        "location_region": 0.15,
+        "location_postcode": 0.1,
+        "price_range": 0.2,
+        "price_psf": 0.05,
+        "yield_minimum": 0.15,
+        "yield_target": 0.1,
+        "property_size": 0.05,
+        "property_condition": 0.1,
+        "property_tenure": 0.05,
+        "risk_profile": 0.05
+      },
+      "is_active": true,
+      "priority": 1,
+      "notes": "Prime central London focus - freehold only"
+    }
+  ]
+}

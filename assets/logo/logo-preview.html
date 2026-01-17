@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Allocation — Logo Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f5f6; padding: 2rem; }
+        h1 { font-size: 1.25rem; font-weight: 500; color: #1f2933; margin-bottom: 2rem; }
+        h2 { font-size: 0.875rem; font-weight: 600; color: #4b5563; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .section { margin-bottom: 3rem; }
+        .preview-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 4px; padding: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
+        .preview-box.dark { background: #1a1d21; }
+        .preview-box img, .preview-box svg { max-width: 100%; height: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .label { font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem; text-align: center; }
+
+        /* Inline rendered logos for comparison */
+        .wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; letter-spacing: 0.08em; color: #1f2933; }
+        .wordmark.white { color: #fff; }
+        .wordmark.horizontal { font-size: 28px; }
+        .wordmark.square { text-align: center; }
+        .wordmark.square .line1 { font-size: 32px; display: block; }
+        .wordmark.square .line2 { font-size: 20px; display: block; letter-spacing: 0.06em; }
+        .wordmark.favicon { font-size: 24px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <h1>Axis Allocation — Logo Assets</h1>
+
+    <div class="section">
+        <h2>Horizontal Wordmark (Primary)</h2>
+        <div class="preview-box">
+            <span class="wordmark horizontal">AXIS ALLOCATION</span>
+        </div>
+        <p class="label">axis-allocation-horizontal.svg — Black on white</p>
+
+        <div class="preview-box dark">
+            <span class="wordmark horizontal white">AXIS ALLOCATION</span>
+        </div>
+        <p class="label">axis-allocation-horizontal-white.svg — White on dark</p>
+    </div>
+
+    <div class="section">
+        <h2>Square / LinkedIn</h2>
+        <div class="grid">
+            <div>
+                <div class="preview-box" style="width: 200px; height: 200px;">
+                    <span class="wordmark square">
+                        <span class="line1">AXIS</span>
+                        <span class="line2">ALLOCATION</span>
+                    </span>
+                </div>
+                <p class="label">axis-allocation-square.svg</p>
+            </div>
+            <div>
+                <div class="preview-box dark" style="width: 200px; height: 200px;">
+                    <span class="wordmark square white">
+                        <span class="line1">AXIS</span>
+                        <span class="line2">ALLOCATION</span>
+                    </span>
+                </div>
+                <p class="label">axis-allocation-square-white.svg</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Favicon</h2>
+        <div class="grid">
+            <div>
+                <div class="preview-box" style="width: 64px; height: 64px;">
+                    <span class="wordmark favicon">A</span>
+                </div>
+                <p class="label">favicon.svg (32x32)</p>
+            </div>
+            <div>
+                <div class="preview-box dark" style="width: 64px; height: 64px;">
+                    <span class="wordmark favicon white">A</span>
+                </div>
+                <p class="label">Reversed variant</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Typography Specification</h2>
+        <div class="preview-box" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+            <p><strong>Font:</strong> Cormorant Garamond, Medium (500)</p>
+            <p><strong>Fallback:</strong> Georgia, Times New Roman, serif</p>
+            <p><strong>Letter-spacing:</strong> 0.08em (horizontal), 0.06em (square)</p>
+            <p><strong>Primary colour:</strong> #1f2933</p>
+            <p><strong>White variant:</strong> #ffffff</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>SVG Files</h2>
+        <div class="preview-box" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <p>assets/logo/axis-allocation-horizontal.svg</p>
+            <p>assets/logo/axis-allocation-horizontal-white.svg</p>
+            <p>assets/logo/axis-allocation-square.svg</p>
+            <p>assets/logo/axis-allocation-square-white.svg</p>
+            <p>assets/logo/favicon.svg</p>
+        </div>
+    </div>
+</body>
+</html>

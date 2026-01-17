@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Axis FastAPI Server",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "web.app:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
